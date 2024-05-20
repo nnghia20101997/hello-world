@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package vn.techres.grpc.java.customer_device.service;
+
+service CustomerDeviceService {
+  rpc SyncCustomerDevice (CustomerDeviceDTO) returns (EmptyDataResponse) {}
+}
+
+message CustomerDeviceDTO {
+  int32 restaurant_id = 1 ;
+  int32 page = 2;
+  int32 limit = 3;
+}
+
+
+message EmptyDataResponse {
+  int32 status = 1;
+  string message = 2;
+  DataListResponse data = 3;
+}
+
+message DataListResponse {
+  int32 limit = 1;
+  int32 total_record = 2;
+  repeated CustomerDeviceResponse list = 3;
+}
+
+message CustomerDeviceResponse {
+  int64 customer_id = 1;
+  string device_uid = 2;
+  string push_token = 3;
+  int32 app_type = 4;
+  int32 platform_type = 5;
+  string created_at = 6;
+  string updated_at =7;
+}
+
+
+message Empty {}
+
